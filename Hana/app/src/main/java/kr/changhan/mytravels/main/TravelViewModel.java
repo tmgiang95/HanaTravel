@@ -3,6 +3,7 @@ package kr.changhan.mytravels.main;
 import android.app.Application;
 
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.arch.core.util.Function;
@@ -10,9 +11,11 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
+import androidx.paging.PagedList;
 import kr.changhan.mytravels.base.MyApplication;
 import kr.changhan.mytravels.base.TravelSort;
 import kr.changhan.mytravels.entity.Travel;
+import kr.changhan.mytravels.entity.TravelPlan;
 import kr.changhan.mytravels.repository.TravelRepository;
 
 public class TravelViewModel extends AndroidViewModel {

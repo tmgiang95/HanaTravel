@@ -10,11 +10,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import kr.changhan.mytravels.base.BaseActivity;
 import kr.changhan.mytravels.base.MyConst;
+import kr.changhan.mytravels.entity.Travel;
+import kr.changhan.mytravels.main.TravelViewModel;
+import kr.changhan.mytravels.repository.TravelDetailRepository;
 import kr.changhan.mytravels.traveldetail.SectionsPagerAdapter;
 import kr.changhan.mytravels.traveldetail.TravelDetailBaseFragment;
+import kr.changhan.mytravels.traveldetail.TravelDetailViewModel;
 
 public class TravelDetailActivity extends BaseActivity {
     private static final String TAG = TravelDetailActivity.class.getSimpleName();
@@ -23,6 +30,7 @@ public class TravelDetailActivity extends BaseActivity {
     private ViewPager mViewPager;
     private CollapsingToolbarLayout mToolbarLayout;
     private TextView mSubtitle;
+    private TravelDetailViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +68,21 @@ public class TravelDetailActivity extends BaseActivity {
 
         long travelId = getIntent().getLongExtra(MyConst.REQKEY_TRAVEL_ID, 0);
         Log.d(TAG, "onCreate: travelId=" + travelId);
+
+        mViewModel = ViewModelProviders.of(this).get(TravelDetailViewModel.class);
+        mViewModel.setTravelId(travelId);
+        mViewModel.getTravel().observe(this, mTravelObserver);
     }
+
+    private final Observer<Travel> mTravelObserver = new Observer<Travel>() {
+        @Override
+        public void onChanged(Travel travel) {
+            Log.d(TAG, "onChanged: travel=" + travel);
+            if (travel == null) return;
+            mToolbarLayout.setTitle(travel.getTitle());
+            mSubtitle.setText(travel.getPlaceName() + "/" + travel.getPlaceAddr() + "\n" +travel.getDateTime() + "~" + travel.getEndDtText());
+        }
+    };
 
 
 }

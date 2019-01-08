@@ -37,4 +37,6 @@ public interface TravelDao {
     @Delete
     void delete(Travel... travels);
 
+    @Query("SELECT * FROM travel where id=:id")
+    LiveData<Travel> getTravelById(long id);
 }
