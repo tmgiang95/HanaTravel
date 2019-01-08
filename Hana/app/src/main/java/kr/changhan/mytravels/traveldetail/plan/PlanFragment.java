@@ -63,8 +63,7 @@ public class PlanFragment extends TravelDetailBaseFragment implements TravelList
             container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_plan, container, false);
         RecyclerView recyclerView = rootView.findViewById(R.id.recyclerview);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mListAdapter);
         return rootView;
     }
