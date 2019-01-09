@@ -80,9 +80,7 @@ public class TravelDetailActivity extends BaseActivity {
             Log.d(TAG, "onChanged: travel=" + travel);
             if (travel == null) return;
             mToolbarLayout.setTitle(travel.getTitle());
-            mSubtitle.setText(travel.getPlaceName() + "/" + travel.getPlaceAddr() + "\n" +travel.getDateTime() + "~" + travel.getEndDtText());
+            mSubtitle.setText(travel.getPlaceName() + "/" + travel.getPlaceAddr() + "\n" +travel.getDateTimeText() + "~" + travel.getEndDtText());
         }
     };
-
-
 }

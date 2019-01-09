@@ -27,4 +27,13 @@
     <string name="title_activity_plan_detail">Plan detail</string>
     <string name="title_activity_diary_detail">Diary detail</string>
     <string name="title_activity_expenses_detail">Expense detail</string>
+    <string name="plan_for">PLAN FOR</string>
+    <string name="input_date_hint">Input date hint</string>
+    <string name="input_plan_desc_hint">Input plan description</string>
+    <string name="input_time_hint">Input time hint</string>
+    <string name="input_place_hint">Input place hint</string>
+    <string name="input_plan_title_hint">Input plan title</string>
+    <string name="plan_edit_warn">Your plan is empty</string>
+    <string name="delete_warn_msg">Are you sure you want to delete?</string>
+    <string name="undo">Undo</string>
 </resources>
