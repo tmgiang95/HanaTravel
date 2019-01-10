@@ -45,6 +45,9 @@ public class TravelDiary extends TravelBaseEntity {
         this.travelId = travelId;
     }
 
+    public TravelDiary() {
+    }
+
     public long getId() {
         return id;
     }

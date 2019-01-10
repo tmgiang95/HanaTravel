@@ -36,4 +36,11 @@
     <string name="plan_edit_warn">Your plan is empty</string>
     <string name="delete_warn_msg">Are you sure you want to delete?</string>
     <string name="undo">Undo</string>
+    <string name="permission_dialog_title">Grand permissions</string>
+    <string name="permission_camera_msg">Allow My Travels to take pictures and record videos?</string>
+    <string name="permission_camera_gallery">Allow My Travels to access photos, medias and files on your device?</string>
+    <string name="permission_not_granted">Permission not granted</string>
+    <string name="diary_for">Diary for</string>
+    <string name="diary_desc_hint">Diary description</string>
+    <string name="diary_edit_warn">Your diary is empty</string>
 </resources>

@@ -3,6 +3,7 @@ package kr.changhan.mytravels.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import java.io.File;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
@@ -15,6 +16,8 @@ public class TravelRepository {
     private static volatile TravelRepository INSTANCE;
     private final TravelDao mTravelDao;
 
+    private final Application mApplication;
+
     /*
     private LiveData<List<Travel>> mAllTravels;
     public LiveData<List<Travel>> getAllTravels() {
@@ -26,6 +29,7 @@ public class TravelRepository {
     */
 
     private TravelRepository(Application application) {
+        mApplication = application;
         AppDatabase db = AppDatabase.getDatabase(application);
         mTravelDao = db.travelDao();
     }
@@ -106,8 +110,27 @@ public class TravelRepository {
 
         @Override
         protected Void doInBackground(final Travel... params) {
+            for (Travel travel : params) {
+                TravelRepository.INSTANCE.deleteTravelDirectory(travel.getId());
+            }
             mAsyncTaskDao.delete(params);
             return null;
+        }
+    }
+
+    private void deleteTravelDirectory(long travelId) {
+        try {
+            final File rootDir = new File(mApplication.getFilesDir(), "t" + travelId);
+            if (!rootDir.exists()) return;
+            File[] files = rootDir.listFiles();
+            if (files != null) {
+                //delete all files
+                for (File file : files) file.delete();
+            }
+            //delete a directory
+            rootDir.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

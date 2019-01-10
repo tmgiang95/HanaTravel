@@ -6,6 +6,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import kr.changhan.mytravels.dao.TravelDao;
+import kr.changhan.mytravels.dao.TravelDiaryDao;
 import kr.changhan.mytravels.dao.TravelPlanDao;
 import kr.changhan.mytravels.entity.Travel;
 import kr.changhan.mytravels.entity.TravelDiary;
@@ -42,4 +43,5 @@ public abstract class AppDatabase extends RoomDatabase {
     }
     public abstract TravelDao travelDao();
     public abstract TravelPlanDao travelPlanDao();
+    public abstract TravelDiaryDao travelDiaryDao();
 }

@@ -44,6 +44,7 @@ public class TravelDetailViewModel extends AndroidViewModel {
     public LiveData<Travel> getTravel() {
         return mTravel;
     }
+
     // plan
     private final MutableLiveData<Map<String, Object>>
             mTravelPlanListOption = new MutableLiveData<>();
@@ -66,5 +67,26 @@ public class TravelDetailViewModel extends AndroidViewModel {
     }
     public LiveData<PagedList<TravelPlan>> getTravelPlanList() {
         return mTravelPlanList;
+    }
+
+    //diary
+    private final MutableLiveData<Map<String, Object>> mTravelDiaryListOption = new MutableLiveData<>();
+    private final LiveData<PagedList<TravelDiary>> mTravelDiaryList = Transformations.switchMap(
+            mTravelDiaryListOption, new Function<Map<String, Object>, LiveData<PagedList<TravelDiary>>>() {
+                @Override
+                public LiveData<PagedList<TravelDiary>> apply(Map<String, Object> input) {
+                    return mRepository.getAllDiariesOfTravel((long)input.get(MyConst.KEY_ID), null);
+                }
+            });
+    public void setTravelDiaryListOption(Map<String, Object> option) {
+        if (option == null) {
+            option = new HashMap<>();
+            option.put(MyConst.KEY_ID, 0);
+        }
+        mTravelDiaryListOption.setValue(option);
+    }
+
+    public LiveData<PagedList<TravelDiary>> getTravelDiaryList() {
+        return mTravelDiaryList;
     }
 }
